@@ -1,8 +1,4 @@
 package projet_poo;
-
-
-
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -17,10 +13,7 @@ public class Main {
 	
 	public static void addClient(List<Client> clients, Scanner scanner) {
 	    // Demande à l'utilisateur de saisir les informations du client
-	    System.out.println("Veuillez saisir les informations du client :");
-	    System.out.print("ID du client : ");
-	    int idClient = Integer.parseInt(scanner.nextLine()); // Lecture de l'ID du client
-
+	   
 	    System.out.print("Nom du client : ");
 	    String nom = scanner.nextLine();
 
@@ -36,11 +29,11 @@ public class Main {
 	    int num = Integer.parseInt(scanner.nextLine()); // Lecture du numéro du client
 
 	    // Création d'un nouveau client avec les informations saisies
-	    Client client = new Client(idClient, nom, prenom, typeClient, num);
+	    Client client = new Client( nom, prenom, typeClient, num);
 
 	    // Boucle pour saisir les interactions du client
 	    while (true) {
-	        System.out.println("Veuillez saisir les informations de l'interaction (ou tapez 'stop' pour arrêter) :");
+	        System.out.println("Veuillez saisir les informations de l'interaction  :");
 	        System.out.print("ID de l'interaction : ");
 	        int idInteraction = Integer.parseInt(scanner.nextLine());
 
@@ -182,9 +175,7 @@ public class Main {
                 
                 System.out.println("Saisissez les nouvelles informations pour le client :");
                 
-                System.out.print("Nouveau ID du client : ");
-                int idClient = Integer.parseInt(scanner.nextLine());
-                client.setIdClient(idClient);
+               
 
                 System.out.print("Nouveau nom du client : ");
                 String nouveauNom = scanner.nextLine();
@@ -434,12 +425,12 @@ List<Bien_Immobilier> resultats = new ArrayList<>();
 
 // Demander à l'utilisateur les critères de recherche
 System.out.println("Recherche de biens immobiliers :");
-System.out.print("Type de bien : ");
+System.out.print("Type de bien (laissez vide pour tous les types) : ");
 String typeRecherche = scanner.nextLine();
-System.out.print("Prix maximum : ");
+System.out.print("Prix maximum (laissez vide pour ignorer) : ");
 double prixMaxRecherche = scanner.nextDouble();
 scanner.nextLine(); // Pour consommer le retour à la ligne restant
-System.out.print("Superficie minimum : ");
+System.out.print("Superficie minimum (laissez vide pour ignorer) : ");
 double superficieMinRecherche = scanner.nextDouble();
 scanner.nextLine(); // Pour consommer le retour à la ligne restant
 
@@ -1128,19 +1119,19 @@ private static void ajouterRendezVous() {
     System.out.println("-------------------------");
 
     System.out.print("Nom du client : ");
-    String nomClient = scanner.nextLine();
+    String nomClient = scanner.next();
     
     System.out.print("prenom du client : ");
-    String prenomClient = scanner.nextLine();
+    String prenomClient = scanner.next();
 
     System.out.print("Date du rendez-vous (AAAA-MM-JJ) : ");
-    LocalDate dateRdv = LocalDate.parse(scanner.nextLine());
+    LocalDate dateRdv = LocalDate.parse(scanner.next());
 
     System.out.print("Heure du rendez-vous (HH:MM) : ");
-    LocalTime heureRdv = LocalTime.parse(scanner.nextLine());
+    LocalTime heureRdv = LocalTime.parse(scanner.next());
 
     System.out.print("Adresse du bien : ");
-    String adresseBien = scanner.nextLine();
+    String adresseBien = scanner.next();
     
     System.out.print("numero telephone du client : ");
     int numTelephone = scanner.nextInt();
@@ -1179,16 +1170,16 @@ private static void afficherTousLesRendezVous() {
     }
 }
 private static void afficheParNomPrenomNum() {
-    System.out.println("**le nom du client que vous souhaitez afficher ces rendez-vous**");
+    System.out.println("**donner les informations du client que vous souhaitez afficher ces rendez-vous**");
     System.out.println("---------------------------------");
 
     System.out.print("Nom du client : ");
-    String nomClient = scanner.nextLine();
+    String nomClient = scanner.next();
     
-    System.out.print("Prenom du client : ");
-    String prenomClient = scanner.nextLine();
+    System.out.print("Prénom du client : ");
+    String prenomClient = scanner.next();
     
-    System.out.print("Numero telephone du client : ");
+    System.out.print("Numéro téléphone du client : ");
     int numTelephone = scanner.nextInt();
 
     List<RendezVous> rendezVousParNom = new ArrayList<>();
@@ -1214,7 +1205,6 @@ private static void afficheParNomPrenomNum() {
         }
      }
     }
-
 private static void modifierRendezVous() {
     System.out.println("**Modification d'un rendez-vous**");
     System.out.println("-------------------------");
@@ -1224,37 +1214,49 @@ private static void modifierRendezVous() {
         return;
     }
 
-    System.out.print("Numéro du rendez-vous à modifier (1-" + rendezVousList.size() + ") : ");
-    int numRdv = scanner.nextInt();
-    scanner.nextLine(); 
 
-    RendezVous rendezVousAModifier = rendezVousList.get(numRdv - 1);
-    System.out.print("Nouveau nom du client : ");
-    String nouveauNomClient = scanner.nextLine();
+    System.out.print("nom du client a modifier: ");
+    String nomClient = scanner.next();
     
-    System.out.print("Nouveau prenom du client : ");
-    String nouveauPrenomClient = scanner.nextLine();
+    System.out.print(" prénom du client a modifier : ");
+    String prenomClient = scanner.next();
+
+    System.out.print("numéro de téléphone du client a modifier: ");
+    int numTelephone = scanner.nextInt();
     
-    System.out.print("Nouvelle date du rendez-vous (AAAA-MM-JJ) : ");
-    LocalDate nouvelleDateRdv = LocalDate.parse(scanner.nextLine());
-
-    System.out.print("Nouvelle heure du rendez-vous (HH:MM) : ");
-    LocalTime nouvelleHeureRdv = LocalTime.parse(scanner.nextLine());
-
-    System.out.print("Nouvelle adresse du bien : ");
-    String nouvelleAdresseBien = scanner.nextLine();
     
-    System.out.print("Nouveau numero de telephone : ");
-    int nouveauNumTelephone = scanner.nextInt();
+    for (RendezVous rvam : rendezVousList) {
+        if (rvam.getNomClient().equalsIgnoreCase(nomClient)
+        		&& rvam.getPrenomClient().equalsIgnoreCase(prenomClient) 
+        		&& rvam.getNumTelephone()==numTelephone) {
 
-    rendezVousAModifier.setNomClient(nouveauNomClient);
-    rendezVousAModifier.setPrenomClient(nouveauPrenomClient);
-    rendezVousAModifier.setDateRdv(nouvelleDateRdv);
-    rendezVousAModifier.setHeureRdv(nouvelleHeureRdv);
-    rendezVousAModifier.setAdresseBien(nouvelleAdresseBien);
-    rendezVousAModifier.setNumTelephone(nouveauNumTelephone);
+            System.out.print("Nouvelle date du rendez-vous (AAAA-MM-JJ) : ");
+            LocalDate nouvelleDateRdv = LocalDate.parse(scanner.next());
+            rvam.setDateRdv(nouvelleDateRdv);
 
-    System.out.println("Rendez-vous modifié avec succès !");
+            System.out.print("Nouvelle heure du rendez-vous (HH:MM) : ");
+            LocalTime nouvelleHeureRdv = LocalTime.parse(scanner.next());
+            rvam.setHeureRdv(nouvelleHeureRdv);
+
+            System.out.print("Nouvelle adresse du bien : ");
+            String nouvelleAdresseBien = scanner.next();
+            rvam.setAdresseBien(nouvelleAdresseBien);
+            
+            System.out.println(" _________________________________ ");
+            System.out.println("|                                 | ");
+            System.out.println("|Rendez-vous modifié avec succès ! | ");
+            System.out.println("|_________________________________|");
+            System.out.println("                                   ");
+            
+            
+            
+            
+        }
+        else {
+        	 System.out.println("Aucun rendez-vous n'a été trouvé pour ce nom et ce prenom et ce telephone.");
+        }
+    }
+    
     }
 
     private static void supprimerRendezVous() {
@@ -1279,9 +1281,9 @@ private static void modifierRendezVous() {
         System.out.println("---------------------------------------------");
 
         System.out.print("Nom du client : ");
-        String nomClient = scanner.nextLine();
+        String nomClient = scanner.next();
         System.out.print("Prenom du client : ");
-        String prenomClient = scanner.nextLine();
+        String prenomClient = scanner.next();
         System.out.print("Numero telephone du client : ");
         int numTelephone = scanner.nextInt();
 
@@ -1304,8 +1306,6 @@ private static void modifierRendezVous() {
 
     
 
-    
-    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Client> clients = new ArrayList<>();

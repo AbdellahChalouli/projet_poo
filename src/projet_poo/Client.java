@@ -1,12 +1,14 @@
 package projet_poo;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Client {
 
-    private int idClient;
+   
     private String nom;
     private String prenom;
     private String typeClient;
@@ -29,8 +31,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(int idClient, String nom, String prenom, String typeClient,int num ) {
-        this.idClient = idClient;
+    public Client( String nom, String prenom, String typeClient,int num ) {
+        
         this.nom = nom;
         this.prenom = prenom;
         this.typeClient = typeClient;
@@ -42,14 +44,7 @@ public class Client {
 
     // Getters et setters
 
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-
+ 
     public String getNom() {
         return nom;
     }
